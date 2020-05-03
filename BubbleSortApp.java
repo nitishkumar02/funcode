@@ -33,10 +33,11 @@ public void bubbleSort()
 {
     int inner, outer;
     int a1 =0;
+    int swap;
 
     for(outer = nElems-1; outer >0;outer --)
     {
-        int swap =0;
+        swap =0;
         System.out.println("outer pass no:"+ ++a1); 
         for(inner= 0; inner<outer; inner++)
          {
@@ -49,6 +50,8 @@ public void bubbleSort()
          }
          System.out.println("Innner Loop runs-Comparision no:"+inner); 
          System.out.println("No of Swaps:"+swap); 
+         if(swap==0)
+         break;
          System.out.println(" ");
 
     }
@@ -74,9 +77,9 @@ public class BubbleSortApp
 
   arr = new ArrayBub(maxSize); // create the array
 
- arr.insert(87); // insert 6 items
- arr.insert(79);
- arr.insert(74);
+ arr.insert(22); // insert 6 items
+ arr.insert(29);
+ arr.insert(84);
  arr.insert(75);
  arr.insert(72);
  arr.insert(68);
