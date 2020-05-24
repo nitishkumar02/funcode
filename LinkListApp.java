@@ -39,6 +39,67 @@ class LinkList
         first = newLink;
 
     }
+    //find the link with specific key
+    public Link find(int key)
+    {
+        //assume non-empty List
+        Link current = first;
+        while(current.iData!=key)
+        {
+            //if at the end of list
+            if(current.next==null)
+            {
+            return null; //did not find the key
+            }
+            else{
+                //go to next link
+                current = current.next;
+            }
+
+            
+        }
+        // we found it 
+        return current;
+    }
+
+    //delete the link based on key
+    public Link delete(int key)
+    {
+        //first find the Link with specific key
+        //assume non-empty list
+        Link current = first;
+        Link previous = first;
+        while(current.iData!=key)
+        {
+            //if at the end of list
+            if(current.next==null)
+            {
+            return null; //did not find the key
+            }
+            else{
+                //go to next link
+                //keep track of previous link as well
+                current = current.next;
+            }
+
+            
+        }
+        // we found it 
+        //return current;
+        //if its first link
+        if(current ==first)
+        {
+            first = first.next;
+        }
+        else
+        {
+            //either we r at in middle or at end
+           previous.next = current.next;
+        }
+        return current;
+
+
+    }
     //delete at first
     public Link deleteFirst()
     {
@@ -75,13 +136,22 @@ class LinkListApp
         theList.insertFirst(88, 8.99);
         theList.displayList();
          // display list
-        while( !theList.isEmpty() ) // until it’s empty,
-        {
-        Link aLink = theList.deleteFirst(); // delete link
-        System.out.print("Deleted "); // display it
-        aLink.displayLink();
-        System.out.println(" ");
-        }
+
+         Link f = theList.find(22);
+         if(f !=null)
+         {
+            System.out.println("Found Link with key"+ f.iData);
+         }
+         else
+         {
+             System.out.println("Cant find the Link");
+         }
+         Link d = theList.delete(88);
+         if(d!=null)
+         {
+             System.out.println("Deleted the Link with");
+         } 
+        
         theList.displayList(); // display list
     }
 }
