@@ -25,11 +25,13 @@ class LinkList
     {
         first = null;
     }
+   
     //check if empty
     public boolean isEmpty()
     {
         return (first==null);
     }
+   
     //insert at first
     public void insertFirst(int id, double dd)
     {
@@ -39,11 +41,13 @@ class LinkList
         first = newLink;
 
     }
+    
     //find the link with specific key
     public Link find(int key)
     {
         //assume non-empty List
         Link current = first;
+      
         while(current.iData!=key)
         {
             //if at the end of list
@@ -51,14 +55,16 @@ class LinkList
             {
             return null; //did not find the key
             }
-            else{
+            else
+            {
                 //go to next link
                 current = current.next;
             }
 
             
         }
-        // we found it 
+
+        // we found it ,if Its not null
         return current;
     }
 
@@ -69,6 +75,7 @@ class LinkList
         //assume non-empty list
         Link current = first;
         Link previous = first;
+        
         while(current.iData!=key)
         {
             //if at the end of list
@@ -76,17 +83,21 @@ class LinkList
             {
             return null; //did not find the key
             }
-            else{
-                //go to next link
+            else
+            {
+                
                 //keep track of previous link as well
+                previous =current;
+
+                //go to next link
                 current = current.next;
             }
 
             
         }
-        // we found it 
-        //return current;
-        //if its first link
+        
+        
+        //if its first link, where u found the key
         if(current ==first)
         {
             first = first.next;
@@ -96,10 +107,13 @@ class LinkList
             //either we r at in middle or at end
            previous.next = current.next;
         }
+        //Found , if Its not null
         return current;
 
 
     }
+
+
     //delete at first
     public Link deleteFirst()
     {
@@ -109,6 +123,7 @@ class LinkList
         return temp;
 
     }
+
     //display the whole List
     public void displayList()
     {
@@ -128,16 +143,17 @@ class LinkListApp
 {
      public static void main(String[] args)
       {
-        LinkList theList = new LinkList(); // make new list
+        LinkList theList = new LinkList(); // make a new list
         
         theList.insertFirst(22, 2.99); // insert four items
         theList.insertFirst(44, 4.99);
         theList.insertFirst(66, 6.99);
         theList.insertFirst(88, 8.99);
+       
         theList.displayList();
          // display list
 
-         Link f = theList.find(22);
+         Link f = theList.find(22); //find a key
          if(f !=null)
          {
             System.out.println("Found Link with key"+ f.iData);
@@ -146,11 +162,18 @@ class LinkListApp
          {
              System.out.println("Cant find the Link");
          }
-         Link d = theList.delete(88);
+         
+         Link d = theList.delete(88);//delete a key
          if(d!=null)
          {
-             System.out.println("Deleted the Link with");
+             System.out.println("Deleted the Link with:"+d.iData);
          } 
+         else
+         {
+             System.out.println("Could not find the link to Delete");
+         }
+
+    
         
         theList.displayList(); // display list
     }
